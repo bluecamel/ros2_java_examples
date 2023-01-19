@@ -1,12 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'org.ros2.tools.gradle'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
 buildscript {
   repositories {
-    jcenter()
+    google()
     mavenCentral()
     mavenLocal()
     maven {
@@ -15,12 +12,13 @@ buildscript {
   }
 
   dependencies {
-    classpath 'gradle.plugin.org.ros2.tools.gradle:ament:0.7.0'
+    classpath 'org.ros2.tools.gradle:ament:0.7.0'
   }
 }
 
 repositories {
-   mavenCentral()
+  google()
+  mavenCentral()
 }
 
 // Use the same syntax as the entry points for the Python examples
@@ -52,4 +50,9 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 
 artifacts {
     archives sourcesJar
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
 }
